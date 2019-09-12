@@ -1,6 +1,5 @@
 package com.zhenglc.eurekaserver.tests;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -88,22 +87,20 @@ class ShareResource {
 public class SyncAndReentrantLockDemo {
 	public static void main(String[] args) {
 		ShareResource shareResource = new ShareResource();
-		for (int j = 0; j < 10; j++) {
-			new Thread(() -> {
-				for (int i = 1; i <= 5; i++) {
-					shareResource.print5();
-				}
-			}, "A").start();
-			new Thread(() -> {
-				for (int i = 1; i <= 10; i++) {
-					shareResource.print10();
-				}
-			}, "B").start();
-			new Thread(() -> {
-				for (int i = 1; i <= 15; i++) {
-					shareResource.print15();
-				}
-			}, "C").start();
-		}
+		new Thread(() -> {
+			for (int i = 1; i <= 5; i++) {
+				shareResource.print5();
+			}
+		}, "A").start();
+		new Thread(() -> {
+			for (int i = 1; i <= 10; i++) {
+				shareResource.print10();
+			}
+		}, "B").start();
+		new Thread(() -> {
+			for (int i = 1; i <= 15; i++) {
+				shareResource.print15();
+			}
+		}, "C").start();
 	}
 }
