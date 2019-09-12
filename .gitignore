@@ -1,0 +1,5 @@
+# Project exclude paths
+/service-feign/target/
+/service-redis/target/
+/service-ribbon/target/
+/service-zuul/target/
